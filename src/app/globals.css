@@ -694,3 +694,74 @@ body.has-custom-cursor input, body.has-custom-cursor textarea, body.has-custom-c
   .case-hero-image > img, .case-hero-title-block .eyebrow, .case-hero-title-block h1, .case-hero-location, .case-loading-image, .case-lightbox[open] { animation: none !important; }
   .case-gallery-frame > img, .next-project-image > img, .next-project-image::after, .next-project-copy > span { transition: none !important; }
 }
+
+/* Version 2 / cinematic chapter and scroll reveals */
+.showreel-section {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: clamp(7rem, 12vw, 11rem);
+  color: var(--paper);
+  background: #20211f;
+}
+.showreel-section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 var(--gutter);
+  pointer-events: none;
+  content: "";
+  opacity: .16;
+  background-image: linear-gradient(to right, rgb(241 240 235 / 24%) 1px, transparent 1px);
+  background-size: 8.333333% 100%;
+}
+.showreel-section .section-heading { border-top-color: rgb(241 240 235 / 32%); }
+.showreel-section .section-heading .eyebrow,
+.showreel-section .section-count,
+.showreel-heading > p { color: rgb(241 240 235 / 68%); }
+.showreel-heading h2 em { color: #c7b9a9; }
+.visual-study-poster { outline-offset: 6px; }
+.visual-study-poster:focus-visible { outline: 2px solid #c7b9a9; }
+.project-index-image > img { filter: saturate(.88); }
+.project-index-open:hover .project-index-image > img,
+.project-index-open:focus-visible .project-index-image > img { filter: saturate(1.05); }
+.case-gallery-open:hover .case-gallery-frame > img,
+.case-gallery-open:focus-visible .case-gallery-frame > img { transform: scale(1.035); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html.has-scroll-motion .scroll-reveal-target {
+    transition: opacity 850ms var(--ease-out), transform 950ms var(--ease-out);
+    transition-delay: 0ms;
+  }
+  html.has-scroll-motion .scroll-reveal-target:not(.is-revealed) {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  html.has-scroll-motion .project-index-card:nth-child(3n + 2),
+  html.has-scroll-motion .case-gallery-item:nth-child(3n + 2),
+  html.has-scroll-motion .principle-row:nth-child(3n + 2) { transition-delay: 90ms; }
+  html.has-scroll-motion .project-index-card:nth-child(3n),
+  html.has-scroll-motion .case-gallery-item:nth-child(3n),
+  html.has-scroll-motion .principle-row:nth-child(3n) { transition-delay: 170ms; }
+}
+
+@keyframes hero-image-drift {
+  from { translate: 0 0; }
+  to { translate: 0 5vh; }
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image-plane {
+      animation-name: hero-image-enter, hero-image-drift;
+      animation-duration: 1.15s, 1s;
+      animation-timing-function: var(--ease-out), linear;
+      animation-delay: .08s, 0s;
+      animation-fill-mode: both, both;
+      animation-timeline: auto, scroll(root);
+      animation-range: normal, 0 95vh;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-index-image > img,
+  .case-gallery-frame > img { filter: none; transition: none; }
+}

@@ -5,14 +5,14 @@ import { demoProjects } from "@/data/projects";
 export function StudioIntroduction() {
   return (
     <section id="studio-introduction" className="studio-introduction page-gutter" aria-labelledby="introduction-title">
-      <div className="section-heading"><span className="eyebrow mono">02 / INTRODUCTION</span><span className="section-count mono">A PROVISIONAL POINT OF VIEW</span></div>
+      <div className="section-heading" data-scroll-reveal><span className="eyebrow mono">02 / INTRODUCTION</span><span className="section-count mono">A PROVISIONAL POINT OF VIEW</span></div>
       <div className="introduction-layout">
-        <div className="introduction-image-wrap" data-cursor="explore">
+        <div className="introduction-image-wrap" data-cursor="explore" data-scroll-reveal>
           <Image src={demoProjects[0].hero_image_url} alt="Demonstration image study: a quiet contemporary living space opening to a garden" fill sizes="(max-width: 760px) 86vw, 42vw" />
           <span className="mono introduction-image-caption">IMAGE STUDY / 02 — DEMONSTRATION</span>
           <span className="image-axis mono" aria-hidden="true">A—A′</span>
         </div>
-        <div className="introduction-copy">
+        <div className="introduction-copy" data-scroll-reveal>
           <span className="eyebrow mono">A PLACE IS NEVER ONLY A PLACE.</span>
           <h2 id="introduction-title">It is a light<br />that <em>changes.</em></h2>
           <div className="introduction-copy-bottom">

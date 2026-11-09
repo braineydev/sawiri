@@ -5,6 +5,7 @@ import "./globals.css";
 import { ArchitecturalGrid } from "@/components/layout/ArchitecturalGrid";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { CursorProvider } from "@/components/cursor/CursorProvider";
+import { ScrollMotionProvider } from "@/components/providers/ScrollMotionProvider";
 import { canIndexSite, canonicalOrigin, metadataOrigin, noIndexRobots, siteMetadata } from "@/lib/seo/site-config";
 import { serializeJsonLd, siteJsonLd } from "@/lib/seo/structured-data";
 
@@ -32,8 +33,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />}
         <SmoothScrollProvider>
-          <ArchitecturalGrid />
-          <CursorProvider>{children}</CursorProvider>
+          <ScrollMotionProvider>
+            <ArchitecturalGrid />
+            <CursorProvider>{children}</CursorProvider>
+          </ScrollMotionProvider>
         </SmoothScrollProvider>
       </body>
     </html>
