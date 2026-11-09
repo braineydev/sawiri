@@ -1,6 +1,6 @@
 # Sawiri
 
-Sawiri is an architectural portfolio built with Next.js, TypeScript, and Supabase. The project currently contains demonstration portfolio content for development; it is not approved for public indexing or production launch.
+Sawiri is an architectural portfolio built with Next.js, TypeScript, and Supabase. Six clearly marked demonstration projects appear whenever the published, non-demo Supabase archive is empty or unavailable. Replace them with approved work before enabling public indexing or treating the site as production-ready.
 
 ## Local development
 

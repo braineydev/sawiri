@@ -7,7 +7,7 @@ export function CaseStudyHero({ project, source }: { project: CaseStudyProject; 
   return (
     <section className="case-hero" aria-labelledby="case-title">
       <div className="case-hero-image">
-        {project.hero_image_url ? <PortfolioImage src={project.hero_image_url} alt={project.gallery_json.find((asset) => asset.url === project.hero_image_url)?.alt ?? `${project.title}, architectural project image`} sizes="100vw" lqip={project.hero_lqip} priority /> : <span className="portfolio-image-fallback mono">PROJECT IMAGE UNAVAILABLE</span>}
+        {project.hero_image_url ? <PortfolioImage src={project.hero_image_url} alt={project.gallery_json.find((asset) => asset.url === project.hero_image_url)?.alt ?? `${project.title}, architectural project image`} sizes="100vw" lqip={project.hero_lqip} preload /> : <span className="portfolio-image-fallback mono">PROJECT IMAGE UNAVAILABLE</span>}
         <div className="case-hero-shade" />
         <span className="case-hero-coordinate mono">{project.coordinates ? `REF. ${project.coordinates.lat.toFixed(4)} / ${project.coordinates.lng.toFixed(4)}` : "REEL ARCHER / PROJECT ARCHIVE"}</span>
       </div>

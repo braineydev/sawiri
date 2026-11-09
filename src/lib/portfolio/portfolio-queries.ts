@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { demoProjects } from "@/data/projects";
 import type { PortfolioProject, Project, ProjectStatus, ProjectTypology } from "@/types/project";
@@ -55,17 +56,12 @@ function demoResult(filters: PortfolioFilters, source: ProjectSource, error?: st
   };
 }
 
-function emptyResult(filters: PortfolioFilters, source: ProjectSource, error?: string): PortfolioResult {
-  return { projects: [], years: [], source, error, total: 0, page: filters.page, pageSize: PORTFOLIO_PAGE_SIZE };
-}
-
 function fallbackResult(filters: PortfolioFilters, error?: string): PortfolioResult {
-  return process.env.NODE_ENV === "production"
-    ? emptyResult(filters, "error", error ? "The project archive is temporarily unavailable." : undefined)
-    : demoResult(filters, error ? "error" : "local", error ? "The project archive is temporarily unavailable." : undefined);
+  return demoResult(filters, error ? "error" : "local", error ? "The project archive is temporarily unavailable." : undefined);
 }
 
-export async function getPortfolio(filters: PortfolioFilters): Promise<PortfolioResult> {
+const getPortfolioByKey = cache(async (filterKey: string): Promise<PortfolioResult> => {
+  const filters = JSON.parse(filterKey) as PortfolioFilters;
   let supabase;
   try {
     supabase = await createClient();
@@ -101,9 +97,12 @@ export async function getPortfolio(filters: PortfolioFilters): Promise<Portfolio
     if (projectResult.error) return fallbackResult(filters, projectResult.error.message);
     if (yearResult.error) return fallbackResult(filters, yearResult.error.message);
 
+    const years = [...new Set((yearResult.data ?? []).map((row) => row.year).filter((year): year is number => Number.isInteger(year)))];
+    if (years.length === 0) return demoResult(filters, "local");
+
     return {
       projects: ((projectResult.data ?? []) as PortfolioProject[]).map(safeProject),
-      years: [...new Set((yearResult.data ?? []).map((row) => row.year).filter((year): year is number => Number.isInteger(year)))],
+      years,
       source: "live",
       total: projectResult.count ?? 0,
       page: filters.page,
@@ -112,4 +111,9 @@ export async function getPortfolio(filters: PortfolioFilters): Promise<Portfolio
   } catch {
     return fallbackResult(filters, "Project query failed");
   }
+});
+
+export function getPortfolio(filters: PortfolioFilters): Promise<PortfolioResult> {
+  const key = JSON.stringify({ q: filters.q, typology: filters.typology, status: filters.status, year: filters.year, sort: filters.sort, page: filters.page });
+  return getPortfolioByKey(key);
 }

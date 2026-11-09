@@ -49,7 +49,7 @@ export function ProjectLightbox({ title, assets, activeIndex, onClose, onChange 
       <div className="case-lightbox-shell">
         <header className="case-lightbox-toolbar mono"><span>{title.toUpperCase()} / IMAGE STUDY</span><span>{String(activeIndex + 1).padStart(2, "0")} — {String(assets.length).padStart(2, "0")}</span><button ref={closeButton} type="button" onClick={() => dialog.current?.close()} autoFocus aria-label="Close image viewer">CLOSE <X size={17} /></button></header>
         <div className={`case-lightbox-stage${active.kind === "drawing" ? " is-drawing" : ""}`} onPointerDown={pointerDown} onPointerUp={pointerUp} onPointerCancel={() => { pointerStart.current = null; }}>
-          <PortfolioImage key={active.url} src={active.url} alt={active.alt} sizes="100vw" priority className="case-lightbox-image" />
+          <PortfolioImage key={active.url} src={active.url} alt={active.alt} sizes="100vw" preload className="case-lightbox-image" />
           {assets.length > 1 && <><button className="case-lightbox-arrow case-lightbox-prev" type="button" onClick={previous} aria-label="Previous image"><ArrowLeft /></button><button className="case-lightbox-arrow case-lightbox-next" type="button" onClick={next} aria-label="Next image"><ArrowRight /></button></>}
           {active.caption && <p className="case-lightbox-caption mono">{active.caption}</p>}
         </div>

@@ -10,14 +10,17 @@ type PageProps = { searchParams: Promise<Record<string, string | string[] | unde
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const params = await searchParams;
+  const filters = parsePortfolioFilters(params);
   const hasFilters = Object.values(params).some((value) => Array.isArray(value) ? value.length > 0 : Boolean(value));
+  const archive = canIndexSite ? await getPortfolio(filters) : null;
+  const publiclyIndexable = canIndexSite && !hasFilters && archive?.source === "live" && archive.total > 0;
   return {
     title: "Projects",
     description: "Explore published architectural project studies in the Reel Archer archive.",
-    alternates: canIndexSite && canonicalOrigin ? { canonical: new URL("/projects", canonicalOrigin).toString() } : undefined,
+    alternates: publiclyIndexable && canonicalOrigin ? { canonical: new URL("/projects", canonicalOrigin).toString() } : undefined,
     openGraph: { type: "website", title: "Projects | Reel Archer", description: "Explore published architectural project studies in the Reel Archer archive." },
     twitter: { card: "summary_large_image", title: "Projects | Reel Archer", description: "Explore published architectural project studies in the Reel Archer archive." },
-    robots: canIndexSite && !hasFilters ? { index: true, follow: true } : noIndexRobots,
+    robots: publiclyIndexable ? { index: true, follow: true } : noIndexRobots,
   };
 }
 

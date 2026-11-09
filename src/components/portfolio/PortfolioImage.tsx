@@ -8,7 +8,7 @@ type Props = {
   alt: string;
   sizes: string;
   lqip?: string | null;
-  priority?: boolean;
+  preload?: boolean;
   className?: string;
 };
 
@@ -30,7 +30,7 @@ function isTrustedImageSource(src: string) {
   return false;
 }
 
-export function PortfolioImage({ src, alt, sizes, lqip, priority = false, className }: Props) {
+export function PortfolioImage({ src, alt, sizes, lqip, preload = false, className }: Props) {
   const [failure, setFailure] = useState<{ src: string; failed: boolean }>({ src: "", failed: false });
   const failed = failure.src === src && failure.failed;
   const valid = isTrustedImageSource(src);
@@ -45,8 +45,8 @@ export function PortfolioImage({ src, alt, sizes, lqip, priority = false, classN
       alt={alt}
       fill
       sizes={sizes}
-      priority={priority}
-      loading={priority ? undefined : "lazy"}
+      preload={preload}
+      loading={preload ? undefined : "lazy"}
       placeholder={lqip ? "blur" : "empty"}
       blurDataURL={lqip ?? undefined}
       className={className}

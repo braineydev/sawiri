@@ -47,11 +47,13 @@ function ProjectFacts({ project }: { project: PortfolioProject }) {
 function ProjectCard({ project: rawProject, index, onOpen }: { project: PortfolioProject; index: number; onOpen: (project: PortfolioProject, trigger: HTMLButtonElement) => void }) {
   const project = safeProject(rawProject);
   const layout = project.featured ? "featured" : index % 3 === 1 ? "portrait" : index % 3 === 2 ? "wide" : "standard";
+  const desktopColumnWidths = [66, 33, 42, 50, 42, 58];
+  const imageSizes = `(max-width: 700px) 92vw, (max-width: 1050px) 47vw, ${desktopColumnWidths[index % desktopColumnWidths.length]}vw`;
   return (
     <article className={`project-index-card project-index-card--${layout}`}>
       <Link className="project-index-open" href={`/projects/${project.slug}`} prefetch={false} aria-label={`Open case study: ${project.title}`} data-cursor="view">
         <span className="project-index-image">
-          <PortfolioImage src={project.hero_image_url} alt={project.gallery_json[0]?.alt ?? `${project.title}, architectural project image`} sizes="(max-width: 700px) 92vw, (max-width: 1050px) 47vw, 60vw" lqip={project.hero_lqip} priority={index === 0} />
+          <PortfolioImage src={project.hero_image_url} alt={project.gallery_json[0]?.alt ?? `${project.title}, architectural project image`} sizes={imageSizes} lqip={project.hero_lqip} />
           <span className="project-index-image-number mono">{String((index + 1)).padStart(2, "0")} / {project.featured ? "FEATURED" : "PROJECT"}</span>
           <span className="project-index-open-label mono">OPEN PROJECT <ArrowUpRight size={14} /></span>
         </span>
