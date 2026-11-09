@@ -1,0 +1,36 @@
+insert into public.projects (
+  slug, title, location, coordinates, year, area_sqm, typology, status,
+  hero_image_url, gallery_json, blueprint_urls, architectural_narrative,
+  featured, display_order, is_published, is_demo
+) values
+  ('courtyard-house', 'Courtyard House', 'Nairobi, Kenya', '{"lat":-1.2864,"lng":36.8172}', 2025, 286, 'Residential', 'Concept',
+   'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=82","alt":"Quiet contemporary living space opening to a garden"}]', '{}',
+   'DEMONSTRATION STUDY — A sequence of shaded thresholds gathers daily life around a planted, open-air room.', true, 1, true, true),
+  ('stone-and-light', 'Stone & Light', 'Naivasha, Kenya', '{"lat":-0.7167,"lng":36.431}', 2024, 412, 'Residential', 'In Progress',
+   'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=82","alt":"Sculptural modern home in warm natural light"}]', '{}',
+   'DEMONSTRATION STUDY — A low, grounded retreat frames long views across the rift valley landscape.', true, 2, true, true),
+  ('civic-room', 'Civic Room', 'Mombasa, Kenya', '{"lat":-4.0435,"lng":39.6682}', 2023, 1250, 'Cultural', 'Concept',
+   'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=82","alt":"Modern public architecture with geometric forms"}]', '{}',
+   'DEMONSTRATION STUDY — A civic canopy creates a generous public threshold between street and courtyard.', true, 3, true, true),
+  ('form-and-field', 'Form & Field', 'Nakuru, Kenya', '{"lat":-0.3031,"lng":36.08}', 2024, 680, 'Commercial', 'Concept',
+   'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1800&q=82","alt":"Minimal modern architecture beneath an open sky"}]', '{}',
+   'DEMONSTRATION STUDY — A calm workspace balances deep shade with a changing play of daylight.', false, 4, true, true),
+  ('material-study', 'Material Study', 'Kigali, Rwanda', '{"lat":-1.9441,"lng":30.0619}', 2022, 148, 'Interior', 'Completed',
+   'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=82","alt":"Tactile contemporary interior with carefully composed materials"}]', '{}',
+   'DEMONSTRATION STUDY — An interior renovation shaped by honest materials, measured light and reuse.', false, 5, true, true),
+  ('urban-canopy', 'Urban Canopy', 'Kampala, Uganda', '{"lat":0.3476,"lng":32.5825}', 2025, 3200, 'Urban', 'Concept',
+   'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=82',
+   '[{"url":"https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=82","alt":"Public space and contemporary urban structure"}]', '{}',
+   'DEMONSTRATION STUDY — A framework for shade and gathering reconnects a fragmented urban block.', false, 6, true, true)
+on conflict (slug) do update set
+  title = excluded.title, location = excluded.location, coordinates = excluded.coordinates,
+  year = excluded.year, area_sqm = excluded.area_sqm, typology = excluded.typology, status = excluded.status,
+  hero_image_url = excluded.hero_image_url, gallery_json = excluded.gallery_json,
+  blueprint_urls = excluded.blueprint_urls, architectural_narrative = excluded.architectural_narrative,
+  featured = excluded.featured, display_order = excluded.display_order,
+  is_published = excluded.is_published, is_demo = excluded.is_demo, updated_at = now();
