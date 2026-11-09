@@ -22,7 +22,7 @@ export function SignatureHero() {
           <div className="hero-caption">
             <span className="eyebrow mono">PROVISIONAL COPY STUDY</span>
             <p>{heroConfig.statement}</p>
-            <MagneticLink href="/projects" className="hero-explore-link" data-cursor="view"><span>EXPLORE THE PROJECTS</span><ArrowUpRight size={15} /></MagneticLink>
+            <MagneticLink href="/#projects" className="hero-explore-link" data-cursor="view"><span>EXPLORE THE PROJECTS</span><ArrowUpRight size={15} /></MagneticLink>
           </div>
         </div>
         <div className="hero-bottomline mono"><span>DEMONSTRATION ARCHITECTURAL IMAGE</span><a href="#studio-introduction" className="scroll-cue"><span>SCROLL TO APPROACH</span><ArrowDown size={14} /></a><span className="hero-figure">FIG. 01 — 06</span></div>

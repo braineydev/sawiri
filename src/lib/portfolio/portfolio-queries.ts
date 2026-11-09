@@ -1,14 +1,14 @@
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { demoProjects } from "@/data/projects";
-import type { PortfolioProject, Project, ProjectStatus, ProjectTypology } from "@/types/project";
+import type { CaseStudyProject, Project, ProjectStatus, ProjectTypology } from "@/types/project";
 import type { PortfolioFilters, PortfolioSort } from "@/lib/portfolio/portfolio-filters";
-import { safeProject } from "@/lib/portfolio/portfolio-utils";
+import { adaptProject } from "@/lib/case-study/case-study-adapter";
 
 export const PORTFOLIO_PAGE_SIZE = 12;
 export type ProjectSource = "live" | "local" | "error";
 export type PortfolioResult = {
-  projects: PortfolioProject[];
+  projects: CaseStudyProject[];
   years: number[];
   source: ProjectSource;
   error?: string;
@@ -17,7 +17,7 @@ export type PortfolioResult = {
   pageSize: number;
 };
 
-const columns = "id,slug,title,location,year,area_sqm,typology,status,hero_image_url,hero_lqip,gallery_json,architectural_narrative,featured,display_order,is_demo";
+const columns = "id,slug,title,location,coordinates,year,area_sqm,typology,status,hero_image_url,hero_lqip,gallery_json,blueprint_urls,comparison_pairs,architectural_narrative,featured,display_order,is_published,is_demo,created_at,updated_at";
 
 function filterLocalProjects(filters: PortfolioFilters) {
   const term = filters.q.toLocaleLowerCase();
@@ -46,7 +46,7 @@ function demoResult(filters: PortfolioFilters, source: ProjectSource, error?: st
   const all = filterLocalProjects(filters);
   const start = (filters.page - 1) * PORTFOLIO_PAGE_SIZE;
   return {
-    projects: all.slice(start, start + PORTFOLIO_PAGE_SIZE),
+    projects: all.slice(start, start + PORTFOLIO_PAGE_SIZE).map(adaptProject),
     years: [...new Set(demoProjects.map((project) => project.year))].sort((a, b) => b - a),
     source,
     error,
@@ -101,7 +101,7 @@ const getPortfolioByKey = cache(async (filterKey: string): Promise<PortfolioResu
     if (years.length === 0) return demoResult(filters, "local");
 
     return {
-      projects: ((projectResult.data ?? []) as PortfolioProject[]).map(safeProject),
+      projects: ((projectResult.data ?? []) as Project[]).map(adaptProject),
       years,
       source: "live",
       total: projectResult.count ?? 0,

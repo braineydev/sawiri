@@ -20,7 +20,7 @@ export function StickyProjectRail({ project }: { project: CaseStudyProject }) {
   ];
 
   return (
-    <aside className="case-spec-rail" id="project-information" aria-label="Project specifications">
+    <aside className="case-spec-rail" id={`project-information-${project.slug}`} aria-label="Project specifications">
       <div className="case-spec-sticky">
         <div className="case-section-label mono"><span>PROJECT DATA</span><span>{String(project.display_order).padStart(2, "0")}</span></div>
         <dl>{facts.filter((fact): fact is [string, string] => Boolean(fact[1])).map(([label, value]) => <div className="case-spec-row" key={label}><dt className="mono">{label}</dt><dd>{value}</dd></div>)}</dl>

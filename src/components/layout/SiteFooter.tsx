@@ -6,7 +6,7 @@ export function SiteFooter({ context = "ARCHITECTURE / SPATIAL PRACTICE" }: { co
   return (
     <footer className="site-footer page-gutter">
       <div className="site-footer-top">
-        <Link className="footer-wordmark" href="/" aria-label={`${brandConfig.name}, home`}>{brandConfig.wordmark}<span>.</span></Link>
+        <Link className="footer-wordmark" href="/#home" aria-label={`${brandConfig.name}, home`}>{brandConfig.wordmark}<span>.</span></Link>
         <span className="site-footer-context mono">{context}</span>
         <Link className="site-footer-return mono" href="/#home">RETURN TO BEGINNING <ArrowUpRight size={13} aria-hidden="true" /></Link>
       </div>

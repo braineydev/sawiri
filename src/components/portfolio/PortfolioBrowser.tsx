@@ -30,7 +30,7 @@ function makeUrl(current: PortfolioFilters, updates: Partial<PortfolioFilters>) 
   if (next.view !== "editorial") params.set("view", next.view);
   if (next.page > 1) params.set("page", String(next.page));
   const query = params.toString();
-  return query ? `/projects?${query}` : "/projects";
+  return query ? `/?${query}#projects` : "/#projects";
 }
 
 function ProjectFacts({ project }: { project: PortfolioProject }) {
@@ -51,7 +51,7 @@ function ProjectCard({ project: rawProject, index, onOpen }: { project: Portfoli
   const imageSizes = `(max-width: 700px) 92vw, (max-width: 1050px) 47vw, ${desktopColumnWidths[index % desktopColumnWidths.length]}vw`;
   return (
     <article className={`project-index-card project-index-card--${layout}`}>
-      <Link className="project-index-open" href={`/projects/${project.slug}`} prefetch={false} aria-label={`Open case study: ${project.title}`} data-cursor="view">
+      <Link className="project-index-open" href={`/#project-${project.slug}`} prefetch={false} aria-label={`Scroll to case study: ${project.title}`} data-cursor="view">
         <span className="project-index-image">
           <PortfolioImage src={project.hero_image_url} alt={project.gallery_json[0]?.alt ?? `${project.title}, architectural project image`} sizes={imageSizes} lqip={project.hero_lqip} />
           <span className="project-index-image-number mono">{String((index + 1)).padStart(2, "0")} / {project.featured ? "FEATURED" : "PROJECT"}</span>
@@ -105,7 +105,7 @@ function ProjectPreview({ project, onClose }: { project: PortfolioProject | null
             <h2 id="project-preview-title">{project.title}</h2>
             <ProjectFacts project={project} />
             {project.architectural_narrative && <p className="project-preview-narrative">{project.architectural_narrative}</p>}
-            <Link className="project-preview-link mono" href={`/projects/${project.slug}`} prefetch={false}>ENTER CASE STUDY <ArrowUpRight size={14} /></Link>
+            <Link className="project-preview-link mono" href={`/#project-${project.slug}`} prefetch={false} onClick={() => dialog.current?.close()}>ENTER CASE STUDY <ArrowUpRight size={14} /></Link>
             {project.is_demo && <p className="project-preview-disclosure mono">DEMONSTRATION RECORD — NOT A REEL ARCHER COMMISSION</p>}
           </aside>
         </div>
@@ -186,7 +186,7 @@ export function PortfolioBrowser({ projects, years, filters, total, pageSize, so
           <div className="portfolio-empty"><span className="mono">{source === "live" && !hasFilters ? "ARCHIVE / 00" : "NO MATCHES / 00"}</span><h2>{source === "live" && !hasFilters ? "The archive is\ntaking shape." : "No projects\nfound here."}</h2><p>{source === "live" && !hasFilters ? "Published projects will appear here when they are ready to be shared." : "Try another term or clear the selected filters to return to the full archive."}</p>{hasFilters && <button type="button" onClick={clearFilters}>CLEAR THE SELECTION <ArrowUpRight size={14} /></button>}</div>
         ) : filters.view === "ledger" ? (
           <div className="project-ledger-wrap" role="region" aria-label="Technical project ledger" tabIndex={0}>
-            <table className="project-ledger"><thead><tr><th scope="col">NO.</th><th scope="col">PROJECT</th><th scope="col">LOCATION</th><th scope="col">TYPOLOGY</th><th scope="col">YEAR</th><th scope="col">AREA</th><th scope="col">STATUS</th></tr></thead><tbody>{projects.map((project, index) => <tr key={project.id}><td className="mono">{String(start + index).padStart(2, "0")}</td><th scope="row"><span className="ledger-project-links"><Link href={`/projects/${project.slug}`} prefetch={false}>{project.title}</Link><button type="button" onClick={(event) => openPreview(project, event.currentTarget)} aria-label={`Quick preview: ${project.title}`}>PREVIEW</button></span>{project.is_demo && <small className="mono">DEMO PROJECT</small>}</th><td>{project.location || "—"}</td><td>{project.typology || "—"}</td><td className="mono">{project.year > 0 ? project.year : "—"}</td><td className="mono">{formatArea(project.area_sqm)}</td><td><span className="ledger-status"><i aria-hidden="true" />{project.status || "—"}</span></td></tr>)}</tbody></table>
+            <table className="project-ledger"><thead><tr><th scope="col">NO.</th><th scope="col">PROJECT</th><th scope="col">LOCATION</th><th scope="col">TYPOLOGY</th><th scope="col">YEAR</th><th scope="col">AREA</th><th scope="col">STATUS</th></tr></thead><tbody>{projects.map((project, index) => <tr key={project.id}><td className="mono">{String(start + index).padStart(2, "0")}</td><th scope="row"><span className="ledger-project-links"><Link href={`/#project-${project.slug}`}>{project.title}</Link><button type="button" onClick={(event) => openPreview(project, event.currentTarget)} aria-label={`Quick preview: ${project.title}`}>PREVIEW</button></span>{project.is_demo && <small className="mono">DEMO PROJECT</small>}</th><td>{project.location || "—"}</td><td>{project.typology || "—"}</td><td className="mono">{project.year > 0 ? project.year : "—"}</td><td className="mono">{formatArea(project.area_sqm)}</td><td><span className="ledger-status"><i aria-hidden="true" />{project.status || "—"}</span></td></tr>)}</tbody></table>
           </div>
         ) : (
           <div className="project-index-grid">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={start + index - 1} onOpen={openPreview} />)}</div>
