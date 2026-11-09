@@ -12,9 +12,9 @@ export function BlueprintGallery({ project }: { project: CaseStudyProject }) {
   const trigger = useRef<HTMLButtonElement | null>(null);
   if (!assets.length) return null;
   return (
-    <section className="case-blueprints" aria-labelledby={`case-blueprint-title-${project.slug}`}>
+    <section className="case-blueprints" aria-labelledby="case-blueprint-title">
       <div className="case-section-label mono"><span>03 / DRAWING ARCHIVE</span><span>{String(assets.length).padStart(2, "0")} FILES</span></div>
-      <h2 id={`case-blueprint-title-${project.slug}`}>The technical<br /><em>record.</em></h2>
+      <h2 id="case-blueprint-title">The technical<br /><em>record.</em></h2>
       <div className="case-blueprint-grid">
         {assets.map((asset, index) => <figure className="case-blueprint-item" key={asset.url}>
           <button type="button" onClick={(event) => { trigger.current = event.currentTarget; setActiveIndex(index); }} aria-label={`Inspect architectural drawing ${index + 1}`}>

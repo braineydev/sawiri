@@ -36,11 +36,11 @@ This checklist covers the work that needs your accounts, decisions, or real stud
 
 ## 4. Verify launch and search indexing
 
-- [ ] Check `/` and its `#home`, `#projects`, `#studio`, and `#contact` sections on the Preview deployment. Confirm `/projects`, `/studio`, `/contact`, and a representative `/projects/[slug]` URL redirect to the matching sections. Also check `/robots.txt`, `/sitemap.xml`, `/opengraph-image`, `/twitter-image`, and `/api/health`.
-- [ ] Check a real published project case study in the continuous page and its social preview. Confirm unpublished and demo projects return no public case study/OG image.
+- [ ] Check `/`, `/projects`, `/studio`, `/contact`, `/robots.txt`, `/sitemap.xml`, `/opengraph-image`, `/twitter-image`, and `/api/health` on the Preview deployment.
+- [ ] Check a real published project detail and its social preview. Confirm unpublished and demo projects return no public case study/OG image.
 - [ ] Run a production build and verify no runtime/build errors. Review the deployment logs and Vercel security headers.
 - [ ] Submit the domain to Google Search Console and verify ownership (usually with a DNS TXT record).
-- [ ] After production indexing is enabled, submit `https://YOUR-DOMAIN/sitemap.xml` in Search Console and inspect the home page and its project, studio, and contact sections.
+- [ ] After production indexing is enabled, submit `https://YOUR-DOMAIN/sitemap.xml` in Search Console and inspect the home, project index, and representative project URLs.
 - [ ] Check the contact workflow end-to-end and confirm inquiries reach the agreed internal process.
 - [ ] Keep an owner-controlled record of Vercel, domain registrar, Supabase, Turnstile, and Upstash access/recovery methods.
 

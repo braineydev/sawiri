@@ -20,9 +20,9 @@ export function ArchitecturalGallery({ project, assets }: { project: CaseStudyPr
   if (!assets.length) return null;
 
   return (
-    <section className="case-gallery" aria-labelledby={`case-gallery-title-${project.slug}`}>
+    <section className="case-gallery" aria-labelledby="case-gallery-title">
       <div className="case-section-label mono"><span>02 / SPATIAL SEQUENCE</span><span>{String(assets.length).padStart(2, "0")} IMAGES</span></div>
-      <h2 id={`case-gallery-title-${project.slug}`} className="case-gallery-heading">A closer<br /><em>look.</em></h2>
+      <h2 id="case-gallery-title" className="case-gallery-heading">A closer<br /><em>look.</em></h2>
       <div className="case-gallery-grid">
         {assets.map((asset, index) => {
           const layout = layoutFor(asset, index, assets.length);

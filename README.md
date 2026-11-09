@@ -1,6 +1,6 @@
 # Sawiri
 
-Reel Archer is an architectural portfolio built with Next.js, TypeScript, and Supabase. The public experience is a single continuous page: the navigation scrolls to the home, projects, studio, and contact sections, and project cards scroll to their case studies. The previous `/projects`, `/studio`, `/contact`, and `/projects/[slug]` routes remain as redirects to the matching sections. Six clearly marked demonstration projects appear whenever the published, non-demo Supabase archive is empty or unavailable. Replace them with approved work before enabling public indexing or treating the site as production-ready.
+Sawiri is an architectural portfolio built with Next.js, TypeScript, and Supabase. Six clearly marked demonstration projects appear whenever the published, non-demo Supabase archive is empty or unavailable. Replace them with approved work before enabling public indexing or treating the site as production-ready.
 
 ## Local development
 

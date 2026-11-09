@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { studioConfig } from "@/config/studio.config";
 import { MethodologyTimeline } from "@/components/studio/MethodologyTimeline";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 function Archive({ title, entries }: { title: string; entries: typeof studioConfig.awards }) {
   if (!entries.length) return null;
@@ -17,7 +18,7 @@ function isSafeExternalUrl(value?: string) {
 }
 
 export function StudioPage() {
-  return <section className="studio-page" id="studio" aria-labelledby="studio-title">
+  return <main className="studio-page">
     <section className="studio-hero page-gutter" aria-labelledby="studio-title">
       <div className="studio-hero-grid" aria-hidden="true"><i /><i /><i /><i /><span>AZ / 05</span></div>
       <p className="mono studio-hero-kicker">{studioConfig.hero.eyebrow} <span>— EDITORIAL STUDY</span></p>
@@ -30,6 +31,7 @@ export function StudioPage() {
     <MethodologyTimeline stages={studioConfig.methodology} />
     <Archive title="AWARDS / VERIFIED RECORD" entries={studioConfig.awards} />
     <Archive title="PRESS / PUBLICATION ARCHIVE" entries={studioConfig.press} />
-    <section className="studio-closing page-gutter"><p className="mono">A PROJECT BEGINS WITH A QUESTION</p><h2>Have something<br /><em>in mind?</em></h2><Link href="/#contact">Shape a project brief <ArrowUpRight size={16} /></Link></section>
-  </section>;
+    <section className="studio-closing page-gutter"><p className="mono">A PROJECT BEGINS WITH A QUESTION</p><h2>Have something<br /><em>in mind?</em></h2><Link href="/contact">Shape a project brief <ArrowUpRight size={16} /></Link></section>
+    <SiteFooter context="STUDIO / CONTENT FRAMEWORK" />
+  </main>;
 }
