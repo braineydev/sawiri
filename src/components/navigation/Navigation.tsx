@@ -64,13 +64,13 @@ export function Navigation() {
         <span className="nav-descriptor mono">{pathname === "/projects" ? "PROJECT ARCHIVE / 01" : pathname === "/studio" ? "STUDIO / APPROACH" : pathname === "/contact" ? "PROJECT INQUIRY" : brandConfig.descriptor}</span>
         <div className="nav-actions">
           <MagneticLink href={pathname === "/" ? "#showreel" : "/studio"} className="nav-study-link mono" data-cursor="view">{pathname === "/" ? "VISUAL STUDY" : "THE STUDIO"} <ArrowUpRight size={14} /></MagneticLink>
-          <button ref={trigger} className="menu-trigger mono" type="button" onClick={openMenu} aria-haspopup="dialog" aria-expanded={open} aria-controls="azin-menu">
+          <button ref={trigger} className="menu-trigger mono" type="button" onClick={openMenu} aria-haspopup="dialog" aria-expanded={open} aria-controls="sawiri-menu">
             <span>MENU</span><span className="menu-trigger-icon"><Menu size={17} strokeWidth={1.4} /></span>
           </button>
         </div>
       </header>
 
-      <dialog ref={dialog} id="azin-menu" className="menu-dialog" aria-label="Reel Archer site navigation" onClose={handleClose} onClick={handleBackdrop} onKeyDown={handleDialogKeyDown}>
+      <dialog ref={dialog} id="sawiri-menu" className="menu-dialog" aria-label="Reel Archer site navigation" onClose={handleClose} onClick={handleBackdrop} onKeyDown={handleDialogKeyDown}>
         <div className="menu-panel page-gutter">
           <div className="menu-topline">
             <Link href="/#home" className="nav-wordmark menu-wordmark" onClick={closeMenu} aria-label={`${brandConfig.name}, home`}>{brandConfig.wordmark}<span>.</span></Link>

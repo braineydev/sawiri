@@ -26,7 +26,7 @@ async function consumeRateLimit(ip: string) {
   const identity = createHash("sha256").update(ip).digest("hex");
   const script = "local n=redis.call('INCR',KEYS[1]); if n==1 then redis.call('EXPIRE',KEYS[1],ARGV[1]); end; return n";
   try {
-    const response = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify(["EVAL", script, "1", `azin:inquiry:${identity}`, "3600"]), cache: "no-store", signal: AbortSignal.timeout(5000) });
+    const response = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify(["EVAL", script, "1", `sawiri:inquiry:${identity}`, "3600"]), cache: "no-store", signal: AbortSignal.timeout(5000) });
     if (!response.ok) return false;
     const result = await response.json() as { result?: number };
     return typeof result.result === "number" && result.result <= 5;

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="azin-opening">
+    <main className="sawiri-opening">
       <Navigation />
       <SignatureHero />
       <StudioIntroduction />

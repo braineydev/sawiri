@@ -1,13 +1,13 @@
-# AZIN owner launch checklist
+# Sawiri owner launch checklist
 
 This checklist covers the work that needs your accounts, decisions, or real studio material. The application changes for Phase 6 are in the repository; preview deployment and owner-specific account setup remain outstanding.
 
 ## 1. Approve the studio content
 
-- [ ] Replace placeholder studio and contact copy with approved AZIN wording.
-- [ ] Replace demo case studies with projects AZIN is authorized to publish. Confirm project names, locations, dates, services, descriptions, credits, and image rights.
+- [ ] Replace placeholder studio and contact copy with approved Sawiri wording.
+- [ ] Replace demo case studies with projects Sawiri is authorized to publish. Confirm project names, locations, dates, services, descriptions, credits, and image rights.
 - [ ] Upload approved project photographs, plans, and drawings to the configured public Supabase Storage bucket. Confirm image credit and permission for web/social sharing.
-- [ ] Provide the official AZIN logo/wordmark and brand assets; `src/app/icon.svg` is a typographic placeholder, not a supplied brand mark.
+- [ ] Confirm `public/logo.jpeg` is the approved browser icon and provide any remaining official logo, wordmark, and brand assets.
 - [ ] Add only verified awards, press, social profiles, studio address, and contact details. Do not claim items that are not true.
 - [ ] Provide approved privacy and inquiry form policy text and a privacy page/link before accepting real inquiries.
 - [ ] Confirm the inquiry form's recipient and operational process. Configure email delivery if the business needs notifications; the current endpoint stores submissions but is not an email service.
@@ -15,6 +15,7 @@ This checklist covers the work that needs your accounts, decisions, or real stud
 ## 2. Configure Supabase
 
 - [ ] Create/select the production Supabase project and keep its credentials available securely.
+- [ ] Rotate the Supabase secret key that was present in the earlier committed `.env.local.example`; update local and Vercel environment settings. Removing it from the current template does not erase it from Git history.
 - [ ] Apply `supabase/migrations/001_initial_schema.sql` through `004_exclude_demo_projects.sql` in order (or link the Supabase CLI and run `supabase db push`).
 - [ ] Do not run `supabase/seed.sql` in production; it inserts demo projects.
 - [ ] Add approved production projects, setting `is_demo=false` and `is_published=true` only after each project is ready for public release.
@@ -27,7 +28,7 @@ This checklist covers the work that needs your accounts, decisions, or real stud
 - [ ] Sign in to Vercel, import the repository, and set the project root to this repository.
 - [ ] Set Node.js to 24.x and install/build commands to the package defaults (`npm install`/`npm run build`; use `npm ci` in CI where configured).
 - [ ] Add environment variables separately to Preview and Production: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SITE_URL`, `SUPABASE_SECRET_KEY`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`, `UPSTASH_REDIS_REST_URL`, and `UPSTASH_REDIS_REST_TOKEN` as applicable.
-- [ ] Set `AZIN_INDEXING_ENABLED=false` in Preview. In Production, leave it false until the final domain and real content have been checked; then set it to `true` to enable canonical URLs, sitemap entries, and indexing metadata.
+- [ ] Set `SAWIRI_INDEXING_ENABLED=false` in Preview. In Production, leave it false until the final domain and real content have been checked; then set it to `true` to enable canonical URLs, sitemap entries, and indexing metadata.
 - [ ] Add the official domain in Vercel and configure its DNS as Vercel instructs. Use the final HTTPS origin, without a path, in `NEXT_PUBLIC_SITE_URL`.
 - [ ] Deploy a Preview build and review it on mobile and desktop, including project filtering, project details, contact submission, images, keyboard navigation, and error states.
 - [ ] Confirm CSP permits the actual configured Supabase and Turnstile hosts, and inspect browser console/network errors on the deployed preview.

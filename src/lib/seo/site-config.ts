@@ -16,7 +16,7 @@ export const metadataOrigin = canonicalOrigin
   ?? (vercelHost ? `https://${vercelHost}` : "http://localhost:3000");
 
 export const canIndexSite = process.env.VERCEL_ENV === "production"
-  && process.env.AZIN_INDEXING_ENABLED === "true"
+  && process.env.SAWIRI_INDEXING_ENABLED === "true"
   && canonicalOrigin !== null;
 
 export const siteMetadata = {

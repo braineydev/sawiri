@@ -14,7 +14,7 @@ supabase link --project-ref YOUR_PROJECT_REF
 supabase db push
 ```
 
-Run `seed.sql` only to load the six marked demonstration projects. Do not treat them as AZIN commissions.
+Run `seed.sql` only to load the six marked demonstration projects. Do not treat them as Sawiri commissions.
 
 ## Access rules
 

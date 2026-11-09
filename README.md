@@ -1,6 +1,6 @@
-# AZIN
+# Sawiri
 
-AZIN is an architectural portfolio built with Next.js, TypeScript, and Supabase. The project currently contains demonstration portfolio content for development; it is not approved for public indexing or production launch.
+Sawiri is an architectural portfolio built with Next.js, TypeScript, and Supabase. The project currently contains demonstration portfolio content for development; it is not approved for public indexing or production launch.
 
 ## Local development
 
@@ -12,11 +12,11 @@ Copy-Item .env.local.example .env.local
 npm.cmd run dev
 ```
 
-Fill the local environment values as described in [`.env.local.example`](.env.local.example). Keep `AZIN_INDEXING_ENABLED=false` locally. Never commit `.env.local` or expose `SUPABASE_SECRET_KEY` in a `NEXT_PUBLIC_` variable.
+Fill the local environment values as described in [`.env.local.example`](.env.local.example). Keep `SAWIRI_INDEXING_ENABLED=false` locally. Never commit `.env.local` or expose `SUPABASE_SECRET_KEY` in a `NEXT_PUBLIC_` variable.
 
 ## Supabase
 
-Read [`supabase/README.md`](supabase/README.md) before configuring Supabase. Apply migrations `001` through `004` in order. The seed data is explicitly demonstration content and must not be presented as AZIN's built work.
+Read [`supabase/README.md`](supabase/README.md) before configuring Supabase. Apply migrations `001` through `004` in order. The seed data is explicitly demonstration content and must not be presented as Sawiri's built work.
 
 ## Owner launch checklist
 
@@ -30,4 +30,4 @@ npm.cmd run lint
 npm.cmd run build
 ```
 
-For SEO and indexing behavior, the production environment must have the approved HTTPS `NEXT_PUBLIC_SITE_URL` and `AZIN_INDEXING_ENABLED=true`. Keep indexing disabled until the owner approves the real content and domain. Demo projects are excluded from public queries, structured data, and the sitemap.
+For SEO and indexing behavior, the production environment must have the approved HTTPS `NEXT_PUBLIC_SITE_URL` and `SAWIRI_INDEXING_ENABLED=true`. Keep indexing disabled until the owner approves the real content and domain. Demo projects are excluded from public queries, structured data, and the sitemap.

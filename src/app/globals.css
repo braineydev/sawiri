@@ -216,7 +216,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 }
 
 /* Phase 2 — Material / interval opening experience */
-.azin-opening { overflow: clip; }
+.sawiri-opening { overflow: clip; }
 .site-navigation { position: absolute; z-index: 30; inset: 0 0 auto; height: 84px; display: flex; align-items: center; justify-content: space-between; color: var(--paper); border-bottom: 1px solid rgb(241 240 235 / 22%); }
 .nav-wordmark { color: inherit; font-family: "Linotype Didot Pro Bold", "Linotype Didot Pro", Didot, "Bodoni 72", Georgia, serif; font-weight: 700; font-size: 1.7rem; letter-spacing: -.035em; text-decoration: none; line-height: 1; }
 .nav-wordmark span, .footer-wordmark span { color: var(--accent); }
