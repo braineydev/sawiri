@@ -41,7 +41,7 @@ export async function GET(request: Request) {
     <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "52px 64px", color: "#f1f0eb", background: "#171817", fontFamily: "Arial, sans-serif", position: "relative" }}>
       {photo && <img src={photo} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.43 }} />}
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg,rgba(23,24,23,.94),rgba(23,24,23,.38))" }} />
-      <div style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 17, letterSpacing: "0.13em", color: "#e0ded5" }}><span>REEL ARCHER / PROJECT STUDY</span><span>{project.typology.toUpperCase()}</span></div>
+      <div style={{ position: "relative", display: "flex", justifyContent: "space-between", fontSize: 17, letterSpacing: "0.13em", color: "#e0ded5" }}><span>SAWIRI / PROJECT STUDY</span><span>{project.typology.toUpperCase()}</span></div>
       <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 16 }}><span style={{ fontSize: 20, letterSpacing: "0.14em", color: "#d27a60" }}>{project.location.toUpperCase()} / {project.year}</span><span style={{ maxWidth: 1020, fontSize: project.title.length > 24 ? 68 : 82, letterSpacing: "-0.06em", lineHeight: 1.02 }}>{project.title}</span></div>
       <div style={{ position: "relative", display: "flex", justifyContent: "space-between", borderTop: "1px solid #c0bdb4", paddingTop: 18, fontSize: 15, letterSpacing: "0.12em", color: "#e0ded5" }}><span>ARCHITECTURAL PROJECT / {project.status.toUpperCase()}</span><span>AZ—PROJECT</span></div>
     </div>,

@@ -16,11 +16,11 @@ const instrument = Instrument_Serif({ subsets: ["latin"], variable: "--font-edit
 export const metadata: Metadata = {
   metadataBase: new URL(metadataOrigin),
   icons: { icon: "/logo.jpeg", apple: "/logo.jpeg" },
-  title: { default: "Reel Archer | Architecture", template: "%s | Reel Archer" },
+  title: { default: "SAWIRI | Architecture", template: "%s | SAWIRI" },
   description: siteMetadata.description,
   alternates: canIndexSite && canonicalOrigin ? { canonical: canonicalOrigin } : undefined,
-  openGraph: { type: "website", siteName: siteMetadata.name, title: "Reel Archer | Architecture", description: siteMetadata.description, ...(canonicalOrigin ? { url: canonicalOrigin } : {}) },
-  twitter: { card: "summary_large_image", title: "Reel Archer | Architecture", description: siteMetadata.description },
+  openGraph: { type: "website", siteName: siteMetadata.name, title: "SAWIRI | Architecture", description: siteMetadata.description, ...(canonicalOrigin ? { url: canonicalOrigin } : {}) },
+  twitter: { card: "summary_large_image", title: "SAWIRI | Architecture", description: siteMetadata.description },
   robots: canIndexSite ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } } : noIndexRobots,
 };
 

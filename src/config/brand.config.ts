@@ -1,6 +1,6 @@
 export const brandConfig = {
-  name: "Reel Archer",
-  wordmark: "Reel Archer",
+  name: "SAWIRI",
+  wordmark: "SAWIRI",
   descriptor: "ARCHITECTURE / SPATIAL PRACTICE",
   copyStatus: "PROVISIONAL IDENTITY STUDY",
 } as const;

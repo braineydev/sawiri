@@ -20,8 +20,8 @@ export const canIndexSite = process.env.VERCEL_ENV === "production"
   && canonicalOrigin !== null;
 
 export const siteMetadata = {
-  name: "Reel Archer",
-  description: "Architectural project studies, studio notes, and project inquiries from Reel Archer.",
+  name: "SAWIRI",
+  description: "Architectural project studies, studio notes, and project inquiries from SAWIRI.",
 };
 
 export const noIndexRobots = { index: false, follow: false } as const;

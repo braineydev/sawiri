@@ -22,11 +22,11 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const archive = canIndexSite ? await getPortfolio(filters) : null;
   const publiclyIndexable = canIndexSite && !hasFilters && archive?.source === "live" && archive.total > 0;
   return {
-    title: { absolute: "Reel Archer | Architecture" },
+    title: { absolute: "SAWIRI | Architecture" },
     description: siteMetadata.description,
     alternates: publiclyIndexable && canonicalOrigin ? { canonical: canonicalOrigin } : undefined,
-    openGraph: { type: "website", title: "Reel Archer | Architecture", description: siteMetadata.description },
-    twitter: { card: "summary_large_image", title: "Reel Archer | Architecture", description: siteMetadata.description },
+    openGraph: { type: "website", title: "SAWIRI | Architecture", description: siteMetadata.description },
+    twitter: { card: "summary_large_image", title: "SAWIRI | Architecture", description: siteMetadata.description },
     robots: publiclyIndexable ? { index: true, follow: true } : noIndexRobots,
   };
 }

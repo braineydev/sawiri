@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight, X } from "lucide-react";
 import { demoProjects } from "@/data/projects";
 import type { KeyboardEvent } from "react";
+import { HeroFrameSequence } from "@/components/hero/HeroFrameSequence";
 
 const studies = demoProjects.map((project) => ({ src: project.hero_image_url, alt: project.gallery_json[0]?.alt ?? `${project.title}, demonstration image study`, title: project.title, place: project.location }));
 
@@ -49,7 +50,7 @@ export function ShowreelExperience() {
       <div className="showreel-heading"><div><span className="eyebrow mono">MATERIAL / LIGHT / FORM</span><h2 id="showreel-title">Look a little<br /><em>closer.</em></h2></div><p>A small collection of image studies. Demonstration material for exploring the visual rhythm of the experience.</p></div>
 
       <button ref={openButton} className="visual-study-poster" type="button" onClick={openStudy} aria-haspopup="dialog" aria-label="Open the demonstration architectural visual study" data-cursor="explore">
-        <Image src={studies[2].src} alt="Demonstration image of geometric contemporary architecture" fill sizes="(max-width: 760px) 100vw, 90vw" />
+        <HeroFrameSequence startFrame={84} endFrame={116} />
         <span className="poster-shade" />
         <span className="poster-top mono"><span>VISUAL STUDY / DEMONSTRATION</span><span>SEQUENCE 01—06</span></span>
         <span className="poster-action"><span className="poster-action-icon"><ArrowUpRight size={19} /></span><span><b>OPEN THE STUDY</b><small>AN IMAGE SEQUENCE · NO FILM ASSET SUPPLIED</small></span></span>
@@ -66,7 +67,7 @@ export function ShowreelExperience() {
             <button type="button" className="study-arrow study-previous" onClick={previous} aria-label="Previous image"><ArrowLeft /></button>
             <button type="button" className="study-arrow study-next" onClick={next} aria-label="Next image"><ArrowRight /></button>
           </div>
-          <div className="study-footer mono"><span>SWIPE OR USE ARROW KEYS / BUTTONS</span><div className="study-progress" aria-label={`Image ${index + 1} of ${studies.length}`}>{studies.map((study, i) => <button type="button" key={study.title} onClick={() => setIndex(i)} aria-label={`Show image ${i + 1}: ${study.title}`} aria-current={i === index ? "true" : undefined}><i /></button>)}</div><span>REEL ARCHER / IMAGE STUDY</span></div>
+          <div className="study-footer mono"><span>SWIPE OR USE ARROW KEYS / BUTTONS</span><div className="study-progress" aria-label={`Image ${index + 1} of ${studies.length}`}>{studies.map((study, i) => <button type="button" key={study.title} onClick={() => setIndex(i)} aria-label={`Show image ${i + 1}: ${study.title}`} aria-current={i === index ? "true" : undefined}><i /></button>)}</div><span>SAWIRI / IMAGE STUDY</span></div>
         </div>
       </dialog>
     </section>

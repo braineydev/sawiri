@@ -68,7 +68,7 @@ export function Navigation() {
         </div>
       </header>
 
-      <dialog ref={dialog} id="sawiri-menu" className="menu-dialog" aria-label="Reel Archer site navigation" onClose={handleClose} onClick={handleBackdrop} onKeyDown={handleDialogKeyDown}>
+      <dialog ref={dialog} id="sawiri-menu" className="menu-dialog" aria-label="SAWIRI site navigation" onClose={handleClose} onClick={handleBackdrop} onKeyDown={handleDialogKeyDown}>
         <div className="menu-panel page-gutter">
           <div className="menu-topline">
             <Link href="/#home" className="nav-wordmark menu-wordmark" onClick={closeMenu} aria-label={`${brandConfig.name}, home`}>{brandConfig.wordmark}<span>.</span></Link>
@@ -76,7 +76,7 @@ export function Navigation() {
             <button className="menu-close mono" type="button" onClick={closeMenu} autoFocus><span>CLOSE</span><X size={17} strokeWidth={1.4} /></button>
           </div>
           <div className="menu-content">
-            <p className="eyebrow mono menu-label">NAVIGATE / REEL ARCHER</p>
+            <p className="eyebrow mono menu-label">NAVIGATE / SAWIRI</p>
             <nav aria-label="Main navigation" className="menu-links">
               {navigationItems.map((item) => (
                   <Link className="menu-link" href={item.href} key={item.href} onClick={closeMenu} data-cursor="view">
@@ -87,7 +87,7 @@ export function Navigation() {
               ))}
             </nav>
           </div>
-          <div className="menu-bottomline mono"><span>REEL ARCHER / PROVISIONAL DIGITAL STUDY</span><span>STUDIO / 01—04</span><Link href="/#contact" onClick={closeMenu}>START AN INQUIRY <ArrowDownRight size={13} /></Link></div>
+          <div className="menu-bottomline mono"><span>SAWIRI / PROVISIONAL DIGITAL STUDY</span><span>STUDIO / 01—04</span><Link href="/#contact" onClick={closeMenu}>START AN INQUIRY <ArrowDownRight size={13} /></Link></div>
           <div className="menu-image-index" aria-hidden="true">
             <Image src={demoProjects[1].hero_image_url} alt="" fill sizes="(max-width: 700px) 0px, 220px" />
             <span className="mono">IMAGE STUDY / DEMONSTRATION</span>

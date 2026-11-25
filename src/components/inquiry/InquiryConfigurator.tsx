@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { studioConfig } from "@/config/studio.config";
 import type { ProjectTypology } from "@/types/project";
+import { HeroFrameSequence } from "@/components/hero/HeroFrameSequence";
 
 type FormState = {
   client_name: string; email: string; project_typology: ProjectTypology | "";
@@ -78,10 +79,10 @@ export function InquiryConfigurator({ turnstileSiteKey }: { turnstileSiteKey?: s
     } finally { submitLock.current = false; setBusy(false); }
   };
 
-  if (success && receipt) return <section className="inquiry-success" aria-live="polite"><span className="success-mark"><Check size={22} /></span><p className="mono">INQUIRY RECEIVED</p><h2>Thank you.<br /><em>A conversation begins.</em></h2><p>Your project brief has been submitted successfully. The summary below is a copy of what you sent.</p><dl className="review-list"><div><dt>PROJECT</dt><dd>{receipt.project_typology || "Project inquiry"} · {receipt.location || "Location not specified"}{receipt.estimated_area_sqm ? ` · ${receipt.estimated_area_sqm} m²` : ""}</dd></div><div><dt>PROJECT NOTE</dt><dd>{receipt.message}</dd></div><div><dt>CONTACT</dt><dd>{receipt.client_name} · {receipt.email}</dd></div></dl><Link href="/#home">Return to Reel Archer <ArrowUpRight size={15} /></Link></section>;
+  if (success && receipt) return <section className="inquiry-success" aria-live="polite"><span className="success-mark"><Check size={22} /></span><p className="mono">INQUIRY RECEIVED</p><h2>Thank you.<br /><em>A conversation begins.</em></h2><p>Your project brief has been submitted successfully. The summary below is a copy of what you sent.</p><dl className="review-list"><div><dt>PROJECT</dt><dd>{receipt.project_typology || "Project inquiry"} · {receipt.location || "Location not specified"}{receipt.estimated_area_sqm ? ` · ${receipt.estimated_area_sqm} m²` : ""}</dd></div><div><dt>PROJECT NOTE</dt><dd>{receipt.message}</dd></div><div><dt>CONTACT</dt><dd>{receipt.client_name} · {receipt.email}</dd></div></dl><Link href="/#home">Return to SAWIRI <ArrowUpRight size={15} /></Link></section>;
 
   return <section className="inquiry-shell" aria-labelledby="contact-title">
-    <div className="inquiry-sidebar"><p className="mono">PROJECT BRIEF / 01—05</p><h1 id="contact-title">Begin with<br /><em>a question.</em></h1><p>Share what you are considering. The details can be refined as the conversation develops.</p><span className="mono inquiry-note">NO FEE OR BUDGET ASSUMPTIONS</span></div>
+    <div className="inquiry-sidebar"><HeroFrameSequence startFrame={189} endFrame={239} className="sequence-frame-canvas--contact" /><p className="mono">PROJECT BRIEF / 01—05</p><h1 id="contact-title">Begin with<br /><em>a question.</em></h1><p>Share what you are considering. The details can be refined as the conversation develops.</p><span className="mono inquiry-note">NO FEE OR BUDGET ASSUMPTIONS</span></div>
     <div className="inquiry-main">
       <div className="inquiry-progress" aria-label={`Step ${step + 1} of ${stepNames.length}`}><div className="inquiry-progress-top"><span className="mono">STEP {String(step + 1).padStart(2, "0")} / 05</span><span className="mono">{stepNames[step].toUpperCase()}</span></div><div className="progress-track" role="progressbar" aria-valuemin={1} aria-valuemax={5} aria-valuenow={step + 1}><i style={{ width: `${((step + 1) / stepNames.length) * 100}%` }} /></div><div className="step-ticks" aria-hidden="true">{stepNames.map((label, index) => <span key={label} className={index <= step ? "is-complete" : ""}>{String(index + 1).padStart(2, "0")}</span>)}</div></div>
       <div className="inquiry-step" key={step} aria-live="polite">

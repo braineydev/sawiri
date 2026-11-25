@@ -9,6 +9,7 @@ import { sortOptions, statuses, typologies } from "@/lib/portfolio/portfolio-fil
 import { formatArea, safeProject } from "@/lib/portfolio/portfolio-utils";
 import { PortfolioImage } from "@/components/portfolio/PortfolioImage";
 import Link from "next/link";
+import { HeroFrameSequence } from "@/components/hero/HeroFrameSequence";
 
 type Props = {
   projects: PortfolioProject[];
@@ -90,7 +91,7 @@ function ProjectPreview({ project, onClose }: { project: PortfolioProject | null
     <dialog ref={dialog} className="project-preview-dialog" aria-labelledby="project-preview-title" onClose={onClose}>
       <div className="project-preview-shell">
         <header className="project-preview-toolbar mono">
-          <span>PROJECT STUDY / {project.is_demo ? "DEMONSTRATION" : "REEL ARCHER ARCHIVE"}</span>
+          <span>PROJECT STUDY / {project.is_demo ? "DEMONSTRATION" : "SAWIRI ARCHIVE"}</span>
           <span>{String(imageIndex + 1).padStart(2, "0")} — {String(Math.max(images.length, 1)).padStart(2, "0")}</span>
           <button type="button" onClick={() => dialog.current?.close()} autoFocus aria-label="Close project preview">CLOSE <X size={17} /></button>
         </header>
@@ -106,7 +107,7 @@ function ProjectPreview({ project, onClose }: { project: PortfolioProject | null
             <ProjectFacts project={project} />
             {project.architectural_narrative && <p className="project-preview-narrative">{project.architectural_narrative}</p>}
             <Link className="project-preview-link mono" href={`/#project-${project.slug}`} prefetch={false} onClick={() => dialog.current?.close()}>ENTER CASE STUDY <ArrowUpRight size={14} /></Link>
-            {project.is_demo && <p className="project-preview-disclosure mono">DEMONSTRATION RECORD — NOT A REEL ARCHER COMMISSION</p>}
+            {project.is_demo && <p className="project-preview-disclosure mono">DEMONSTRATION RECORD — NOT A SAWIRI COMMISSION</p>}
           </aside>
         </div>
         <footer className="project-preview-footer mono"><span>{project.location}</span><span>{project.status}</span><span>{project.slug}</span></footer>
@@ -155,7 +156,8 @@ export function PortfolioBrowser({ projects, years, filters, total, pageSize, so
   return (
     <>
       <section className="portfolio-intro page-gutter">
-        <div className="portfolio-intro-top mono"><span>REEL ARCHER / PROJECT ARCHIVE</span><span>INDEX 01 — {String(Math.max(total, 1)).padStart(2, "0")}</span></div>
+        <HeroFrameSequence startFrame={117} endFrame={146} className="sequence-frame-canvas--archive" />
+        <div className="portfolio-intro-top mono"><span>SAWIRI / PROJECT ARCHIVE</span><span>INDEX 01 — {String(Math.max(total, 1)).padStart(2, "0")}</span></div>
         <div className="portfolio-intro-main">
           <div><p className="eyebrow mono">SELECTED WORKS / {source === "live" ? "LIVE ARCHIVE" : "PROVISIONAL ARCHIVE"}</p><h1>Spaces.<br /><em>Ideas. Matter.</em></h1></div>
           <div className="portfolio-intro-aside"><p>A changing collection of places, questions and material studies.</p><span className="portfolio-total mono"><b>{String(total).padStart(2, "0")}</b> {total === 1 ? "PROJECT" : "PROJECTS"} IN VIEW</span></div>
